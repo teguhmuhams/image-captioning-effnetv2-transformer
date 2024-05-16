@@ -1,0 +1,35 @@
+body {
+    font-family: "DM Sans";
+    letter-spacing: 0.5px;
+}
+.text-primary {
+    color: #486284 !important;
+}
+.btn-primary {
+    background-color: #486284;
+    border-color: #486284;
+}
+.btn-primary:hover {
+    background-color: #2a415f;
+    border-color: #2a415f;
+}
+.btn-outline-primary {
+    border-color: #486284;
+    color: #486284;
+}
+.btn-outline-primary:hover {
+    background-color: #2a415f;
+    border-color: #2a415f;
+    color: #fff;
+}
+#previewImage {
+    height: 250px; /* Set the fixed height you want */
+    width: auto; /* This ensures the width adjusts to maintain the aspect ratio */
+    object-fit: contain; /* This prevents the image from stretching */
+}
+a:hover {
+    color: #2a415f;
+}
+.border-primary {
+    border-color: #dee5ed !important;
+}
