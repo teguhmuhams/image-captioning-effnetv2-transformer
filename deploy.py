@@ -2,9 +2,7 @@ from flask import Flask, request, jsonify, render_template
 from werkzeug.utils import secure_filename
 import torchtext; torchtext.disable_torchtext_deprecation_warning()
 from torchtext.data.utils import get_tokenizer; 
-import os, sys, traceback
-
-sys.path.append('D:/USU/Skripsi/code/real')
+import os, traceback
 from dataset import create_text_data
 from inference import inference
 
@@ -20,12 +18,9 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 def get_vocab():
     data_root_path = '../dataset'
     clean_text_dataset = f"{data_root_path}/text/Flickr8k.token.bahasa.clean.txt"
-    
     # init tokenizer
     tokenizer = get_tokenizer('basic_english')
-    
     _, vocab = create_text_data(clean_text_dataset, tokenizer=tokenizer)
-    
     return vocab
 
 def allowed_file(filename):

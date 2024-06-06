@@ -21,8 +21,8 @@ def inference(image, loaded_path, d_model, n_head, vocab, cnn_backbone, transfor
     model.load_state_dict(load['model_state_dict'])
     model.eval()
     
-    return greedy_inference(transformed_image, model, vocab, max_seq_length)
-    # return beam_search_inference(transformed_image, model, vocab, max_seq_length, beam_width=5)
+    # return greedy_inference(transformed_image, model, vocab, max_seq_length)
+    return beam_search_inference(transformed_image, model, vocab, max_seq_length, beam_width=5)
 
 
 def beam_search_inference(transformed_image, model, vocab, max_seq_length, beam_width=5, device='cuda'):

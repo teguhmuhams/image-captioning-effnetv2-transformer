@@ -62,13 +62,34 @@
 
         <div class="container">
             <footer class="py-3 my-4">
-                <ul
+                <div
                     class="nav justify-content-center border-bottom pb-3 mb-3"
-                ></ul>
-                <p class="text-center text-muted">
-                    © 2024 Indo Captioner | Dikembangkan oleh Muhammad Teguh
-                    Sinulingga
-                </p>
+                ></div>
+                <div class="row justify-content-center align-items-center">
+                    <div
+                        class="col-lg-6 d-flex justify-content-center justify-content-lg-start"
+                    >
+                        <p class="text-center text-lg-left text-muted mb-0">
+                            © 2024 Indo Captioner | Dikembangkan oleh Muhammad
+                            Teguh Sinulingga
+                        </p>
+                    </div>
+                    <div
+                        class="col-lg-6 d-flex justify-content-center justify-content-lg-end align-items-center"
+                    >
+                        <img
+                            class="me-3"
+                            src="{{ url_for('static', filename='logo_usu.png') }}"
+                            alt=""
+                            style="width: 3.5em; height: auto"
+                        />
+                        <p
+                            class="text-center text-lg-right text-muted mb-0 ml-2"
+                        >
+                            Universitas Sumatera Utara
+                        </p>
+                    </div>
+                </div>
             </footer>
         </div>
         <script
