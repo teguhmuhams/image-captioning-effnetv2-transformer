@@ -92,7 +92,6 @@ def create_text_data(filename, tokenizer):
     
     return dataframe, vocab
 
-
 class Flickr8kDataset(Dataset):
     def __init__(
         self, data_root_path, dataframe, vocab, tokenizer, max_seq_len, transforms

@@ -5,6 +5,7 @@ from torchtext.data.utils import get_tokenizer;
 import os, traceback
 from dataset import create_text_data
 from inference import inference
+import json
 
 from PIL import Image
 
@@ -15,12 +16,26 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 # Ensure the upload folder exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+def make_vocab_jsonable(vocab):
+    # Convert Vocab object to a simple dictionary for JSON serialization
+    return {token: vocab[token] for token in vocab.get_itos()}
+
 def get_vocab():
-    data_root_path = '../dataset'
+    data_root_path = 'dataset'
+    vocab_file = 'vocab.json'
     clean_text_dataset = f"{data_root_path}/text/Flickr8k.token.bahasa.clean.txt"
-    # init tokenizer
     tokenizer = get_tokenizer('basic_english')
-    _, vocab = create_text_data(clean_text_dataset, tokenizer=tokenizer)
+
+    if os.path.exists(vocab_file):
+        with open(vocab_file, 'r') as json_file:
+            vocab = json.load(json_file)
+    else:
+        _, vocab = create_text_data(clean_text_dataset, tokenizer)
+        # Convert the Vocab object to a JSON serializable dictionary
+        jsonable_vocab = make_vocab_jsonable(vocab)
+        with open(vocab_file, 'w') as json_file:
+            json.dump(jsonable_vocab, json_file, indent=4)
+
     return vocab
 
 def allowed_file(filename):
@@ -33,6 +48,10 @@ def index():
 @app.route('/coba')
 def coba():
     return render_template('coba.html')
+
+@app.route('/coba2')
+def coba2():
+    return render_template('coba2.html')
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -51,13 +70,22 @@ def upload_file():
         d_model = 512
         n_head = 4
 
-        checkpoint_dir = f'checkpoints/{d_model}_{n_head}/'
-        model = checkpoint_dir + 'checkpoint_epoch_8.pth'
-        model = f'saved_model/{d_model}_{n_head}_m.pth'
+        # checkpoint_dir = f'checkpoints/{d_model}_{n_head}/'
+        # model = checkpoint_dir + 'checkpoint_epoch_8.pth'
+        model_s = f'saved_model/{d_model}_{n_head}_s.pth'
+        model_m = f'saved_model/{d_model}_{n_head}_m.pth'
         
-        cnn_backbone = 'efficientnetv2_rw_s.ra2_in1k'
-        cnn_backbone = 'efficientnetv2_rw_m.agc_in1k'
+        cnn_backbone_s = 'efficientnetv2_rw_s.ra2_in1k'
+        cnn_backbone_m = 'efficientnetv2_rw_m.agc_in1k'
         
+        model = model_s
+        cnn_backbone = cnn_backbone_s
+        
+        scale = request.form.get('scale')
+        if scale == 'm':
+            model = model_m
+            cnn_backbone = cnn_backbone_m
+            
         vocab = get_vocab()
     
         try:

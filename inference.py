@@ -3,6 +3,10 @@ from model import ImageCaptioningModel
 import torchtext; torchtext.disable_torchtext_deprecation_warning()
 from dataset import get_transforms
 
+def reverse_vocab(vocab):
+    # Reverses the key-value pairs in the dictionary
+    return {index: token for token, index in vocab.items()}
+
 def inference(image, loaded_path, d_model, n_head, vocab, cnn_backbone, transformed = False, device = 'cuda'):
     fc_dim = 2048
     num_layers = 1
@@ -71,7 +75,8 @@ def beam_search_inference(transformed_image, model, vocab, max_seq_length, beam_
 
     # Choose the best beam after finishing
     best_beam = max(beams, key=lambda x: x[0])
-    target_tokens = [vocab.get_itos()[i] for i in best_beam[1]]
+    reversed_vocab = reverse_vocab(vocab)
+    target_tokens = [reversed_vocab[i] for i in best_beam[1]]
 
     return target_tokens[1:]
 
@@ -101,6 +106,7 @@ def greedy_inference(transformed_image, model, vocab, max_seq_length, device='cu
             break
 
     # Convert token ids to words
-    target_tokens = [vocab.get_itos()[i] for i in caption]
+    reversed_vocab = reverse_vocab(vocab)
+    target_tokens = [reversed_vocab[i] for i in caption]
 
     return target_tokens[1:]  # Exclude the start token
