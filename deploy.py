@@ -53,6 +53,10 @@ def coba():
 def coba2():
     return render_template('coba2.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 @app.route('/upload', methods=['POST'])
 def upload_file():
     # Check if the post request has the file part

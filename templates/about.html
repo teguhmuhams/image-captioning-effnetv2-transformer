@@ -1,0 +1,114 @@
+{% extends 'base.html' %} {% block title %} Beranda {% endblock %}
+
+<!-- Hero -->
+{% block content %}
+<div class="container-fluid">
+    <div class="container">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">
+                        Indonesian Image Caption Generator
+                        <span class="text-primary">// Indo Captioner</span>
+                    </h1>
+                    <p class="lead">Developed by Muhammad Teguh Sinulingga</p>
+                    <p class="lead">
+                        Dikembangkan untuk memenuhi tugas akhir dan sebagai
+                        syarat memperoleh ijazah Sarjana Ilmu Komputer
+                    </p>
+                </div>
+
+                <div class="py-3">
+                    <table class="table">
+                        <thead class="table-light">
+                            <th colspan="3">
+                                <h3 class="text-center text-primary">
+                                    Tech stack
+                                </h3>
+                            </th>
+                        </thead>
+                        <thead class="table-light">
+                            <th>Role</th>
+                            <th>Purpose</th>
+                            <th>Tech</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="2">Deep Learning Model</td>
+                                <td>Encoder (CNN)</td>
+                                <td>EfficientNetV2-S, EfficientNetV2-M</td>
+                            </tr>
+                            <tr>
+                                <td>Decoder</td>
+                                <td>Transformer (decoder only)</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">Frontend</td>
+                                <td>Markup Language</td>
+                                <td>
+                                    <i
+                                        class="fa-brands fa-html5 text-primary"
+                                    ></i>
+                                    HTML
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Styling</td>
+                                <td>
+                                    <i
+                                        class="fa-brands fa-css3-alt text-primary"
+                                    ></i>
+                                    CSS and
+                                    <i
+                                        class="fa-brands fa-bootstrap text-primary"
+                                    ></i>
+                                    Bootstrap
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Scripting</td>
+                                <td>
+                                    <i class="fa-brands fa-js text-primary"></i>
+                                    JavaScript
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">Web Deployment</td>
+                                <td>Backend Language</td>
+                                <td>
+                                    <i
+                                        class="fa-brands fa-python text-primary"
+                                    ></i>
+                                    Python
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>API Framework</td>
+                                <td>Flask</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div
+                    class="d-grid gap-3 d-md-flex justify-content-center text-center"
+                >
+                    <a
+                        href="https://github.com/teguhmuhams/"
+                        class="btn btn-primary btn-lg px-4 py-2 me-md-2"
+                    >
+                        <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/teguhsinulingga/"
+                        class="btn btn-primary btn-lg px-4 py-2 me-md-2"
+                    >
+                        <i class="fa-brands fa-github"></i>
+                        Github
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
